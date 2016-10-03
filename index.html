@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en' ng-app="ShoppingCart">
+
+<head>
+	<title> ShoppingCart Demo</title>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> -->
+	<link rel="stylesheet" href="bootstrap.min.css" />
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="angular-route.js"></script>
+
+	<script src="draganddrop.js"></script>
+
+    <script type="text/javascript" src="app1.js"></script>
+
+	
+	 <!-- Google Maps JavaScript API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    
+    <!-- vsGoogleAutocomplete -->
+    <script type="text/javascript" src="vs-google-autocomplete.js"></script>
+
+    <!--  <script type="text/javascript" src="distance.js"></script> 
+    <style>
+		[class *= col-] [class *= col-] {    
+		    border:1px dashed;
+		}
+    </style>-->
+
+</head>
+
+<body ng-controller="CartController">
+
+	<!-- AngularJS will inject the partial pages that correspond to the routed views -->
+	<div class="jumbotron text-center">
+		<h1>Ashley's Shopping Website Demo</h1>
+		<p>This is a simple fruit store for now</p>
+	</div>
+
+	<!-- <a href="#store">store</a>
+	<a href="#shipping">shipping</a> -->
+
+	<div ng-view></div>
+
+</body>
+
+</html>
+
+
+
+

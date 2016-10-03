@@ -1,0 +1,55 @@
+<!-- Store -->
+<div class="container">
+	<div class="row">
+		<!-- SHOW PRODUCTS -->
+		 <div class="col-md-6" ui-on-Drop="onDrop($event,$data,fruits)">
+			<div ng-repeat="product in fruits">
+				<div class="row" ui-draggable="true" drag="product"
+                on-drop-success="dropSuccessHandler($event,$index,fruits)">
+					<div class="col-md-5">
+						<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
+					</div>
+					<div class="col-md-7">
+						<h2> {{product.name}} </h2>
+						<h3 name="price"> ${{product.price}}/lb </h3>
+						<p> {{product.information}} </p>
+
+					</div>
+				</div>
+				<button ng-click ="addToCart1(product.name)"> Add To Cart</button>
+			</div> 
+		</div>	
+
+
+		<!-- SHOW CART -->
+		<div class="col-md-6" ui-on-Drop="onDrop($event,$data,cart)">	
+			<h1> Cart </h1>
+
+			<div ng-repeat="product in cart">
+				<div class="row" ui-draggable="true" drag="product"
+                on-drop-success="dropSuccessHandler($event,$index,cart)">
+					<div class="col-md-5">
+						<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
+					</div>
+					<div class="col-md-7">
+						<h2> {{product.name}} </h2>
+						<h3 name="price"> ${{product.price}}/lb </h3>
+						<p> {{product.information}} </p>
+
+					</div>
+				</div>
+				<input type="text" name ="quantity" ng-model="product.quantity">
+				<button ng-click ="remove1(product.name)"> Delete</button>
+			</div>
+			<button ng-click="calculate1()" >Calculate subtotal</button><br>
+
+			Subtotal:{{subtotal | number:2}}<br>
+			Total Quantity:{{totalQuantity}}<br>
+			Total Weight:{{totalWeight}}
+			<br><bt><br><br>
+
+			<a href="#shipping" title="next step"><b>Next Step</b></a>
+		</div>
+	</div>
+	<br><br><br>
+</div>
