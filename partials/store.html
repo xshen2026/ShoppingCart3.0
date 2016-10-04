@@ -1,11 +1,13 @@
 <!-- Store -->
 <div class="container">
 	<div class="row">
+
 		<!-- SHOW PRODUCTS -->
-		 <div class="col-md-6" ui-on-Drop="onDrop($event,$data,fruits)">
+
+		 <div class="col-md-6" ui-on-Drop="onDrop($event,$data,fruits)">  <!-- fruits.splice(index,1) -->
 			<div ng-repeat="product in fruits">
 				<div class="row" ui-draggable="true" drag="product"
-                on-drop-success="dropSuccessHandler($event,$index,fruits)">
+                    on-drop-success="dropSuccessHandler($event,$index,fruits)"> <!-- fruits.push($data) -->
 					<div class="col-md-5">
 						<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
 					</div>
@@ -25,21 +27,25 @@
 		<div class="col-md-6" ui-on-Drop="onDrop($event,$data,cart)">	
 			<h1> Cart </h1>
 
-			<div ng-repeat="product in cart">
+			<div >
+				<p class="help-block"> You can drag and drop your desired item here, or click the "Add To Cart" button.</p>
+				<p class="help-block"> If you want to delete an item, drag it back to the left side, or click the "Delete" button.</p>
 				<div class="row" ui-draggable="true" drag="product"
-                on-drop-success="dropSuccessHandler($event,$index,cart)">
-					<div class="col-md-5">
-						<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
-					</div>
-					<div class="col-md-7">
-						<h2> {{product.name}} </h2>
-						<h3 name="price"> ${{product.price}}/lb </h3>
-						<p> {{product.information}} </p>
-
-					</div>
+				     ng-repeat="product in cart" on-drop-success="dropSuccessHandler($event,$index,cart)">
+				    <div ng-show="product.name!='default'"> 
+						<div class="col-md-5">
+							<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
+						</div>
+						<div class="col-md-7">
+							<h2> {{product.name}} </h2>
+							<h3 name="price"> ${{product.price}}/lb </h3>
+							<p> {{product.information}} </p>
+						</div>
+						<input type="text" name ="quantity" ng-model="product.quantity">
+						<button ng-click ="remove1(product.name)" class="btn btn-danger"> Delete</button>
+					</div>	
 				</div>
-				<input type="text" name ="quantity" ng-model="product.quantity">
-				<button ng-click ="remove1(product.name)" class="btn btn-danger"> Delete</button>
+				
 			</div>
 			<button ng-click="calculate1()" class="btn btn-primary">Calculate subtotal</button><br>
 			<br><br><br>

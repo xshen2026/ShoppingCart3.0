@@ -1,0 +1,31 @@
+<!-- Address Manually-->
+
+<h3> Address Manual Input</h3>
+<span class="help-block">Validation needed</span>
+
+<div class="form-group">
+	<label>Line 1 (Street Number and Street Name)</label>
+	<input type="text" name="Line1" class="form-control" ng-model="Line1" placeholder="4 Privet Drive" required>
+	<span style="color:red" ng-show="MyForm.Line1.$dirty && MyForm.Line1.$invalid">
+		<span ng-show="MyForm.Line1.$error.required">An address is required.<br></span>
+	</span>
+
+	<label>Line 2 (APT Number)</label>
+	<input type="text" name="Line2" class="form-control" ng-model="Line2">
+
+	<label>City</label>
+	<input type="text" name="City" class="form-control" ng-model="City" required check-city>
+	<span style="color:red" ng-show="MyForm.City.$dirty && MyForm.City.$invalid">
+		<span ng-show="MyForm.City.$error.required">A city is required.<br></span>
+		<span ng-show="MyForm.City.$invalid">City name can only be alphabets.<br></span>
+	</span>		
+
+	<label>State</label>
+	<select class="form-control" ng-model="statessss" ng-options="item for item in states"></select>
+
+	<label>Zip Code</label>
+	<input type="text" class="form-control" name="ZipCode" ng-model="ZipCode" required check-zip>
+	<span style="color:Red" ng-show="MyForm.ZipCode.$dirty && MyForm.ZipCode.$invalid">
+		<span ng-show="MyForm.ZipCode.$invalid">Zip code should be 5 digits(xxxx) or 5 digits-4 digits(xxxxx-xxxx)</span>
+	</span>
+</div>
