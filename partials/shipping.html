@@ -1,16 +1,16 @@
-<div>
-<h4>Enter Your Source</h4>
-<input vs-google-autocomplete
+<div class="container">
+    <div class="row">
+        <!-- <h4>Enter Your Source</h4>
+        <input vs-google-autocomplete
                 ng-model="address1.name"               
                 type="text" 
                 name="address1"
                 id="address1"
                 class="form-control" 
-                placeholder="Hogwarts School of Witchcraft and Wizardry ">
-
-<h4>Enter your destination</h4>
-
-<input vs-google-autocomplete
+                placeholder="Hogwarts School of Witchcraft and Wizardry "> -->
+        <div class="col-md-6">
+            <h4>Enter your destination</h4>
+            <input vs-google-autocomplete
                 ng-model="address.name" 
                 vs-street-number="address.components.streetNumber"
                 vs-street="address.components.street"
@@ -23,38 +23,63 @@
                 id="address"
                 class="form-control" 
                 placeholder="Hogwarts School of Witchcraft and Wizardry ">
-<br><br>
- destination state: {{address.components.state}}<br><br>
+            <h5 class="help-block">Destination State: {{address.components.state}}</h5><br>
+            <button ng-click="doTax()" class="btn btn-primary">Calculate the tax and extra fee</button>
+            <p class="help-block">*There will be a $20.00 extra fee if the total qty is less then 10.</p>
+            <p class="help-block">The Tax:{{tax | number:2}}</p>
+            
+            <p class="help-block">The Extra Fee:{{extra}}</p>
+            
 
-<button ng-click="doTax()">Calculate the tax and extra fee</button>
-<h2>The tax would be</h2>
-{{tax}}
-<h2>The Extra Fee</h2>
-{{extra}}
+            <br>
+        
+            <!--  <div id="dvDistance"></div> -->
 
-<br>
+             <!-- The source is : {{address1.name}} <br>
+             The destination is: {{address.name}} <br> -->
+            <button ng-click="getDistance()" class="btn btn-primary"> Calculate the distance</button>
+            <p class="help-block"> *The warehouse address is：1700 Rockville Pike, Rockville, MD 20852, USA</p>
+            <p class="help-block">The distance: {{distance | number:2}}</p>
+             <!-- <input id="dis" ng-model="distance"> <br> -->
+            <br> 
 
+            <h4>Choose Your shipping Method</h4>
+            <p class="help-block">*There is a $10.00 extra fee if you choose fast shipping</p>
+            <select ng-model="SM" ng-options="item for item in shippingMethods"></select>
 
- <div id="dvDistance"></div> 
-
- The source is : {{address1.name}} <br>
- The destination is: {{address.name}} <br>
-
-<button ng-click="getDistance()"> Calculate the distance</button>
-
-<h3>The distance is </h3>
- <input id="dis" ng-model="distance"> <br>
- {{distance}}
-
-<h2>Choose Your shipping Method</h2>
-<select ng-model="SM" ng-options="item for item in shippingMethods">
-</select>
-
-<h2>The shipping fee</h2>
-<button ng-click="doShip()"> Calculate the shipping fee</button>
-{{shippingFee}}
-
+            
+            <button ng-click="doShip()" class="btn btn-primary"> Calculate the shipping fee</button>
+            <p class="help-block">The shipping fee {{shippingFee | number:2}}</p>
+            <br><br>
+        </div>
 
 
+        <div class="col-md-6"> 
+            <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>Subtotal</td>
+                    <td>{{subtotal | number:2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tax</td>
+                    <td>{{tax | number:2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Extra Fee</td>
+                    <td>{{extra}}</td>
+                  </tr>
+                  <tr>
+                    <td>Shipping Fee</td>
+                    <td>{{shippingFee | number:2}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Total</b></td>
+                    <td><b>{{total | number:2}}</b></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 	

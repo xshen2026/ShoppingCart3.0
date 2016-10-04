@@ -138,6 +138,7 @@
 		$scope.doTax = function(){
 			alert('Now calculate the tax and the extra fee');
 			alert('$scope.address.components.state='+$scope.address.components.state);
+			$scope.subtotal = dataService.subtotal;
 			$scope.tax = myService.calTax($scope.address.components.state, dataService.subtotal);
 			//alert(dataService.totalQuantity);
 			if (dataService.totalQuantity < 10) {
@@ -149,9 +150,9 @@
 		
 		$scope.getDistance = function(){
 			alert('Now Calculate the distance');
-			alert($scope.address1.name);
-			alert($scope.address.name);
-			var source = $scope.address1.name;
+			//alert($scope.address1.name);
+			//alert($scope.address.name);
+			var source = "1700 Rockville Pike, Rockville, MD 20852, USA"/*$scope.address1.name*/;
 			var destination = $scope.address.name;
 			var service = new google.maps.DistanceMatrixService();
 		    service.getDistanceMatrix({
@@ -163,12 +164,12 @@
 		        avoidTolls: false
 		    }, function (response, status) {
 		        if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-		            var distance = response.rows[0].elements[0].distance.text;
+		            //var distance = response.rows[0].elements[0].distance.text;
 		           // var duration = response.rows[0].elements[0].duration.text;
 		            var distance1 = response.rows[0].elements[0].distance.value;
-		            var dvDistance = document.getElementById("dvDistance");
+		            /*var dvDistance = document.getElementById("dvDistance");
 		            dvDistance.innerHTML = "";
-		            dvDistance.innerHTML += "Distance: " + distance + "<br />";
+		            dvDistance.innerHTML += "Distance: " + distance + "<br />";*/
 		            $scope.distance = distance1/1609.344;               //convert from meter to mile
 		            $scope.$apply();
 		            alert(distance1);
@@ -185,6 +186,7 @@
 			alert('totalweight ='+dataService.totalWeight);
 			$scope.shippingFee = shippingFee.calShipping($scope.SM, $scope.distance, dataService.totalWeight);
 			alert('shippingFee='+$scope.shippingFee);
+			$scope.total = $scope.subtotal + $scope.extra + $scope.tax + $scope.shippingFee;
 		};
 
 		$scope.dropSuccessHandler = function($event,index,array){
