@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-md-7">
 						<h2> {{product.name}} </h2>
-						<h3 name="price"> ${{product.price}}/lb </h3>
+						<h4 name="price" style="color:rgb(150, 0, 0)"> ${{product.price}}/lb </h4>
 						<p> {{product.information}} </p>
 
 					</div>
@@ -37,8 +37,8 @@
 							<img ng-src="{{product.name}}.jpg" alt="Description" width="150" height="110"/>
 						</div>
 						<div class="col-md-7">
-							<h2> {{product.name}} </h2>
-							<h3 name="price"> ${{product.price}}/lb </h3>
+							<h2> {{product.name}}</h2>
+							<h4 name="price" style="color:rgb(128, 128, 128)"> ${{product.price}}/lb </h4>
 							<p> {{product.information}} </p>
 						</div>
 						<input type="text" name ="quantity" ng-model="product.quantity">

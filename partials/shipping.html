@@ -1,3 +1,4 @@
+ 
 <div class="container">
     <div class="row">
         <!-- <h4>Enter Your Source</h4>
@@ -9,7 +10,8 @@
                 class="form-control" 
                 placeholder="Hogwarts School of Witchcraft and Wizardry "> -->
         <div class="col-md-6">
-            <h4>Enter your destination</h4>
+            <my-address></my-address>
+            <!-- <h4>Enter your destination</h4>
             <input vs-google-autocomplete
                 ng-model="address.name" 
                 vs-street-number="address.components.streetNumber"
@@ -23,7 +25,7 @@
                 id="address"
                 class="form-control" 
                 placeholder="Hogwarts School of Witchcraft and Wizardry ">
-            <h5 class="help-block">Destination State: {{address.components.state}}</h5><br>
+            <h5 class="help-block">Destination State: {{address.components.state}}</h5><br> -->
             <button ng-click="doTax()" class="btn btn-primary">Calculate the tax and extra fee</button>
             <p class="help-block">*There will be a $20.00 extra fee if the total qty is less then 10.</p>
             <p class="help-block">The Tax:{{tax | number:2}}</p>
@@ -79,7 +81,9 @@
                   </tr>
                 </tbody>
             </table>
+        <button ng-click="checkOut()" class="btn btn-primary">Check Out</button>
         </div>
     </div>
+
 </div>
 	

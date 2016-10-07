@@ -191,6 +191,17 @@
 
           array.push($data);
       	};
+
+      	$scope.checkOut = function(){
+      	    if ($scope.address.components.state == "HI") {
+      	    	alert('cannot ship to Hawaii');
+      	    }
+      	     if ($scope.address.components.state == "AK") {
+      	    	alert('cannot ship to Alaska');
+      	    }
+      	}
+
+
 	}]);
 
 /*-------------calculate tax service--------------------------------------*/
@@ -234,9 +245,6 @@
 	app.directive('myAddress',function(){
 		return {
 			restrict:'E',
-			scope:{
-				where: '='
-			},
 			templateUrl:'address.html'
 		};
 	});
