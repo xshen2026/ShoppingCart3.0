@@ -3,23 +3,23 @@
 
 	app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 		$stateProvider.
-		  state('/store',{
+		  state('store',{
 		  	url: '/store',
 		  	templateUrl: 'partials/store.html',
 		  	controller: 'CartController'
 		  }).
-		  state('/shipping',{
-		  	url: '/shipping',	
+		  state('shipping',{
+		  	url: '/shipping/:subtotal?totalQuantity?totalWeight',	
 		  	templateUrl:'partials/shipping.html',
 		  	controller:'CartController'
 		  });/*.
 		  otherwise({
 		  	redirectTo:'/store'
 		  })*/
-		  $urlRouterProvider.otherwise("/store");
+		  $urlRouterProvider.otherwise("store");
 	}]);
 
-	app.controller('CartController',['$scope', 'myService','dataService', 'shippingFee', function($scope, myService,dataService,shippingFee){
+	app.controller('CartController',['$scope', '$state','myService',/*'dataService',*/ 'shippingFee', function($scope, $state, myService,/*dataService,*/shippingFee){
 		$scope.shippingMethods = ['Fast Shipping','Ground Shipping'];
 		$scope.fruits = [
 			{
@@ -128,20 +128,24 @@
 			}
 			//alert(sum1);
 			$scope.subtotal = sum;
-			dataService.subtotal = sum;
+			//dataService.subtotal = sum;
 			$scope.totalQuantity = sum1;
-			dataService.totalQuantity = sum1;
+			//dataService.totalQuantity = sum1;
 			$scope.totalWeight = sum2;
-			dataService.totalWeight = sum2;
+			//dataService.totalWeight = sum2;
 		};
         /*------------------calculate the tax and the extra fee-------------------*/
 		$scope.doTax = function(){
 			//alert('Now calculate the tax and the extra fee');
 			//alert('$scope.address.components.state='+$scope.address.components.state);
-			$scope.subtotal = dataService.subtotal;
-			$scope.tax = myService.calTax($scope.address.components.state, dataService.subtotal);
+			$scope.subtotal = $state.params.subtotal;
+			alert($scope.subtotal);
+			/*alert($state.params.subtotal);
+			alert($state.params.totalQuantity);
+			alert($state.params.totalWeight);*/
+			$scope.tax = myService.calTax($scope.address.components.state, $state.params.subtotal);
 			//alert(dataService.totalQuantity);
-			if (dataService.totalQuantity < 10) {
+			if ($state.params.totalQuantity < 10) {
 				$scope.extra = 20;
 			} else {
 				$scope.extra = 0;
@@ -182,7 +186,7 @@
 			//alert('Now calculate the shipping fee');
 			//alert('$scope.distance = '+$scope.distance);
 			//alert('totalweight ='+dataService.totalWeight);
-			$scope.shippingFee = shippingFee.calShipping($scope.SM, $scope.distance, dataService.totalWeight);
+			$scope.shippingFee = shippingFee.calShipping($scope.SM, $scope.distance, $state.params.totalWeight);
 			//alert('shippingFee='+$scope.shippingFee);
 			$scope.total = $scope.subtotal + $scope.extra + $scope.tax + $scope.shippingFee;
 		};
@@ -198,10 +202,18 @@
       	$scope.checkOut = function(){
       	    if ($scope.address.components.state == "HI") {
       	    	alert('cannot ship to Hawaii');
-      	    }
-      	     if ($scope.address.components.state == "AK") {
+      	    } else if ($scope.address.components.state == "AK") {
       	    	alert('cannot ship to Alaska');
+      	    } else {
+      	    	alert('Check out successfully!');
       	    }
+      	}
+      	$scope.nextStep = function(){
+      		$state.go('shipping',{
+      			subtotal:$scope.subtotal, 
+      			totalQuantity: $scope.totalQuantity, 
+      			totalWeight: $scope.totalWeight
+      		});
       	}
 
 
