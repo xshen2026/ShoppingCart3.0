@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="bootstrap.min.css" />
     <script type="text/javascript" src="angular.js"></script>
     <script type="text/javascript" src="angular-route.js"></script>
+    <script type="text/javascript" src="angular-ui-router.js"></script>
 	<script type="text/javascript" src="draganddrop.js"></script>
     <script type="text/javascript" src="app1.js"></script>
 	<!-- Google Maps JavaScript API -->
@@ -27,11 +28,11 @@
 		<p>This is a simple fruit store for now</p>
 	</div>
 
-	<!-- <a href="#store">store</a>
+	<!-- <a ui-sref="#store">store</a>
 	<a href="#shipping">shipping</a> -->
 	
     <!-- AngularJS will inject the partial pages that correspond to the routed views -->
-	<div ng-view></div>
+	<div ui-view></div>
 
 </body>
 

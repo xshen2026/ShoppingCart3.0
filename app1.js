@@ -1,19 +1,22 @@
 (function(){
-	var app = angular.module('ShoppingCart',['ngRoute','vsGoogleAutocomplete','ngDragDrop']);
+	var app = angular.module('ShoppingCart',['ui.router',/*'ngRoute',*/'vsGoogleAutocomplete','ngDragDrop']);
 
-	app.config(['$routeProvider',function($routeProvider){
-		$routeProvider.
-		  when('/store',{
+	app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+		$stateProvider.
+		  state('/store',{
+		  	url: '/store',
 		  	templateUrl: 'partials/store.html',
 		  	controller: 'CartController'
 		  }).
-		  when('/shipping',{
+		  state('/shipping',{
+		  	url: '/shipping',	
 		  	templateUrl:'partials/shipping.html',
 		  	controller:'CartController'
-		  }).
+		  });/*.
 		  otherwise({
 		  	redirectTo:'/store'
-		  });
+		  })*/
+		  $urlRouterProvider.otherwise("/store");
 	}]);
 
 	app.controller('CartController',['$scope', 'myService','dataService', 'shippingFee', function($scope, myService,dataService,shippingFee){
