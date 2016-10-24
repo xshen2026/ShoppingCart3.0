@@ -57,14 +57,14 @@
 				inCart: false
 			}
 		];
-		$scope.addToCart = function(itemname) {
+		/*$scope.addToCart = function(itemname) {
 			for (var i = 0; i < $scope.fruits.length; i++) {
 				if ($scope.fruits[i].name === itemname) {
 					$scope.fruits[i].inCart = true;
 					$scope.fruits[i].quantity = 1;
 				}
 			}
-		};
+		};*/
 		$scope.addToCart1 = function(itemname) {
 			for (var i = 0; i < $scope.fruits.length; i++) {
 				if ($scope.fruits[i].name === itemname) {
@@ -74,13 +74,13 @@
 				}
 			}
 		};
-		$scope.remove = function(itemname) {
+		/*$scope.remove = function(itemname) {
 			for(var i = 0; i < $scope.fruits.length; i++) {
 				if ($scope.fruits[i].name === itemname) {
 					$scope.fruits[i].inCart = false;
 				}
 			}
-		};
+		};*/
 		$scope.remove1 = function(itemname) {
 			for (var i = 0; i < $scope.cart.length; i++) {
 				if ($scope.cart[i].name === itemname) {
@@ -89,10 +89,9 @@
 					$scope.cart.splice(i,1);
 				}
 			}
-			$scope.apply();
 		};
         /*----------------Caculate the subtotal and the total Quantity-------------------*/
-		$scope.calculate = function() {
+		/*$scope.calculate = function() {
 			var sum = 0;
 			var sum1 = 0;
 			var sum2 = 0;
@@ -103,7 +102,7 @@
 					sum = sum + $scope.fruits[i].price * $scope.fruits[i].quantity;
 					sum1 = sum1 +  $scope.fruits[i].quantity * 1;
 					sum2 = sum2 + $scope.fruits[i].weight * $scope.fruits[i].quantity;
-					/*sum = sum.toFixed(2);*/
+					//sum = sum.toFixed(2);
 				}
 			}
 			//alert(sum1);
@@ -113,7 +112,7 @@
 			dataService.totalQuantity = sum1;
 			$scope.totalWeight = sum2;
 			dataService.totalWeight = sum2;
-		};
+		};*/
 		$scope.calculate1 = function() {
 			var sum = 0;
 			var sum1 = 0;
@@ -139,7 +138,7 @@
 			//alert('Now calculate the tax and the extra fee');
 			//alert('$scope.address.components.state='+$scope.address.components.state);
 			$scope.subtotal = $state.params.subtotal;
-			alert($scope.subtotal);
+			//alert($scope.subtotal);
 			/*alert($state.params.subtotal);
 			alert($state.params.totalQuantity);
 			alert($state.params.totalWeight);*/
@@ -188,7 +187,7 @@
 			//alert('totalweight ='+dataService.totalWeight);
 			$scope.shippingFee = shippingFee.calShipping($scope.SM, $scope.distance, $state.params.totalWeight);
 			//alert('shippingFee='+$scope.shippingFee);
-			$scope.total = $scope.subtotal + $scope.extra + $scope.tax + $scope.shippingFee;
+			$scope.total = $scope.subtotal*1+$scope.extra*1+$scope.tax*1+$scope.shippingFee*1;
 		};
 		$scope.dropSuccessHandler = function($event,index,array){
           
